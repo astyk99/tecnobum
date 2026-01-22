@@ -10,15 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #ff6b00;
-            --primary-dark: #cc5500;
-            --secondary: #00a8ff;
-            --dark: #1a1a2e;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --primary: #0066ff;
+            --primary-dark: #0052d4;
+            --primary-light: #4d94ff;
+            --secondary: #00d4ff;
+            --dark: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #2d2d2d;
+            --light-gray: #3d3d3d;
+            --light: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 102, 255, 0.15);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --border-radius: 12px;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
         }
         
         * {
@@ -27,49 +31,64 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: #fff;
+            line-height: 1.7;
+            color: var(--light);
+            background-color: var(--dark);
+            overflow-x: hidden;
         }
         
         h1, h2, h3, h4 {
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 1rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
         }
         
         h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
+            background: linear-gradient(to right, var(--light), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         h2::after {
             content: '';
             position: absolute;
-            width: 80px;
-            height: 4px;
-            background-color: var(--secondary);
-            bottom: -10px;
+            width: 100px;
+            height: 5px;
+            background: var(--gradient);
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 5px;
         }
         
         h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
         }
         
         p {
             margin-bottom: 1.5rem;
-            color: var(--gray);
+            color: #cccccc;
+            font-size: 1.05rem;
         }
         
         .container {
@@ -80,67 +99,110 @@
         }
         
         .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            background-color: var(--primary);
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 1rem 2.2rem;
+            background: var(--gradient);
+            color: var(--light);
             border: none;
-            border-radius: 4px;
+            border-radius: var(--border-radius);
             font-weight: 600;
+            font-size: 1rem;
             text-decoration: none;
             cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            z-index: -1;
+            opacity: 0;
             transition: var(--transition);
         }
         
         .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 102, 255, 0.3);
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
         }
         
         .btn-secondary {
-            background-color: var(--secondary);
-            color: white;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-secondary::before {
+            background: var(--primary);
         }
         
         .btn-secondary:hover {
-            background-color: #0088cc;
+            color: var(--light);
         }
         
         section {
-            padding: 5rem 0;
+            padding: 6rem 0;
         }
         
-        .section-light {
-            background-color: var(--light);
+        .section-dark {
+            background-color: var(--dark-gray);
         }
         
         /* Header y Navegación */
         header {
-            background-color: white;
-            box-shadow: var(--shadow);
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+        
+        .header-scrolled {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            padding: 0;
         }
         
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            padding: 1.2rem 0;
         }
         
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--light);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .logo span {
+            color: var(--primary);
+        }
+        
+        .logo-icon {
             color: var(--secondary);
+            font-size: 1.8rem;
         }
         
         .nav-links {
@@ -149,82 +211,160 @@
         }
         
         .nav-links li {
-            margin-left: 2rem;
+            margin-left: 2.5rem;
         }
         
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: #cccccc;
             font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
             transition: var(--transition);
         }
         
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--light);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
         }
         
         .menu-toggle {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+            color: var(--light);
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                var(--dark);
             text-align: center;
-            padding: 10rem 0 6rem;
-            margin-top: 70px;
+            padding: 12rem 0 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--gradient);
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            top: -100px;
+            right: -100px;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 4rem;
+            margin-bottom: 1.8rem;
         }
         
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
-            margin: 0 auto 2.5rem;
-            color: rgba(255, 255, 255, 0.8);
+            margin: 0 auto 3rem;
+            color: #aaaaaa;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         /* Servicios */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
         
         .service-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 2rem;
+            background-color: var(--dark-gray);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
             text-align: center;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 102, 255, 0.3);
         }
         
         .service-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--primary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            background: rgba(0, 102, 255, 0.1);
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-icon {
+            background: var(--gradient);
+            color: var(--light);
+            transform: scale(1.1);
         }
         
         /* Sobre Nosotros */
         .about-content {
             display: flex;
             align-items: center;
-            gap: 4rem;
-            margin-top: 3rem;
+            gap: 5rem;
+            margin-top: 4rem;
         }
         
         .about-text {
@@ -233,91 +373,175 @@
         
         .about-image {
             flex: 1;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.2;
+            z-index: 1;
         }
         
         .about-image img {
             width: 100%;
             height: auto;
             display: block;
+            transition: var(--transition);
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            background: rgba(0, 212, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            flex-shrink: 0;
         }
         
         /* Contacto */
         .contact-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 4rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 5rem;
+            margin-top: 4rem;
         }
         
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 2.5rem;
         }
         
         .contact-item {
             display: flex;
             align-items: flex-start;
-            gap: 1rem;
+            gap: 1.5rem;
         }
         
         .contact-icon {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
-            margin-top: 0.3rem;
+            background: rgba(0, 102, 255, 0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover .contact-icon {
+            background: var(--gradient);
+            color: var(--light);
+            transform: translateY(-5px);
         }
         
         .contact-form {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
+            background-color: var(--dark-gray);
+            padding: 3rem;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.7rem;
             font-weight: 500;
+            color: #cccccc;
         }
         
         .form-control {
             width: 100%;
-            padding: 0.8rem;
-            border: 1px solid var(--light-gray);
-            border-radius: 4px;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
             font-family: 'Inter', sans-serif;
+            color: var(--light);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2);
         }
         
         textarea.form-control {
-            min-height: 150px;
+            min-height: 180px;
             resize: vertical;
         }
         
         /* Footer */
         footer {
             background-color: var(--dark);
-            color: white;
-            padding: 4rem 0 2rem;
+            color: var(--light);
+            padding: 5rem 0 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
+            gap: 3.5rem;
+            margin-bottom: 4rem;
         }
         
         .footer-column h3 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
+            color: var(--light);
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
         }
         
         .footer-links {
@@ -325,69 +549,92 @@
         }
         
         .footer-links li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
         
         .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
+            color: #aaaaaa;
             text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a i {
+            color: var(--primary);
+            font-size: 0.9rem;
             transition: var(--transition);
         }
         
         .footer-links a:hover {
+            color: var(--light);
+            transform: translateX(5px);
+        }
+        
+        .footer-links a:hover i {
             color: var(--secondary);
         }
         
         .social-links {
             display: flex;
             gap: 1rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
         
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
+            width: 45px;
+            height: 45px;
+            background-color: var(--dark-gray);
+            border-radius: 10px;
+            color: var(--light);
             text-decoration: none;
             transition: var(--transition);
+            font-size: 1.2rem;
         }
         
         .social-links a:hover {
-            background-color: var(--primary);
+            background: var(--gradient);
+            transform: translateY(-5px);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #888888;
+            font-size: 0.95rem;
         }
         
         /* Responsive */
-        @media (max-width: 992px) {
+        @media (max-width: 1100px) {
             h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .hero h1 {
                 font-size: 3rem;
             }
             
+            h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
             .about-content {
                 flex-direction: column;
             }
             
             .about-text, .about-image {
                 width: 100%;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
         }
         
@@ -401,20 +648,23 @@
                 top: 70px;
                 left: 0;
                 width: 100%;
-                background-color: white;
+                background-color: var(--dark-gray);
                 flex-direction: column;
                 align-items: center;
                 padding: 2rem 0;
-                box-shadow: var(--shadow);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
                 transform: translateY(-100%);
                 opacity: 0;
                 visibility: hidden;
                 transition: var(--transition);
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+                z-index: 999;
             }
             
             .nav-links.active {
                 transform: translateY(0);
                 opacity: 1;
+                visibility: visible;
             }
             
             .nav-links li {
@@ -422,11 +672,25 @@
             }
             
             .hero {
-                padding: 8rem 0 4rem;
+                padding: 10rem 0 6rem;
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            section {
+                padding: 4rem 0;
             }
         }
         
@@ -435,30 +699,41 @@
                 padding: 0 1.5rem;
             }
             
-            section {
-                padding: 3rem 0;
-            }
-            
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             h2 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                padding: 2rem;
             }
         }
     </style>
 </head>
 <body>
     <!-- Header y Navegación -->
-    <header>
+    <header id="header">
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">Tecno<span>Bum</span></a>
+                <a href="#" class="logo">
+                    <i class="fas fa-rocket logo-icon"></i>
+                    Tecno<span>Bum</span>
+                </a>
                 
                 <div class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
@@ -477,15 +752,23 @@
     <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="container">
-            <h1>Soluciones Informáticas para tu Empresa</h1>
-            <p>En TecnoBum ofrecemos servicios tecnológicos integrales para optimizar tus operaciones, proteger tus datos y potenciar tu crecimiento en el entorno digital.</p>
-            <a href="#contacto" class="btn">Contáctanos</a>
-            <a href="#servicios" class="btn btn-secondary">Nuestros Servicios</a>
+            <div class="hero-content">
+                <h1>Impulsa tu Negocio con Tecnología de Vanguardia</h1>
+                <p>En TecnoBum ofrecemos soluciones informáticas integrales diseñadas para optimizar tus operaciones, proteger tus datos y acelerar tu crecimiento en el mundo digital.</p>
+                <div class="hero-buttons">
+                    <a href="#contacto" class="btn">
+                        <i class="fas fa-paper-plane"></i> Contáctanos
+                    </a>
+                    <a href="#servicios" class="btn btn-secondary">
+                        <i class="fas fa-laptop-code"></i> Nuestros Servicios
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Servicios -->
-    <section id="servicios">
+    <section class="section-dark" id="servicios">
         <div class="container">
             <h2>Nuestros Servicios</h2>
             <div class="services-grid">
@@ -541,15 +824,50 @@
     </section>
 
     <!-- Sobre Nosotros -->
-    <section class="section-light" id="nosotros">
+    <section id="nosotros">
         <div class="container">
             <h2>Sobre Nosotros</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h3>Expertos en Soluciones Tecnológicas</h3>
+                    <h3>Expertos en Soluciones Tecnológicas Innovadoras</h3>
                     <p>En TecnoBum combinamos experiencia, innovación y compromiso para ofrecer servicios informáticos de alta calidad. Nuestro equipo de profesionales certificados está dedicado a ayudar a empresas de todos los tamaños a alcanzar sus objetivos tecnológicos.</p>
                     <p>Nos especializamos en transformación digital, seguridad informática y desarrollo de soluciones a medida que se adaptan a las necesidades específicas de cada cliente.</p>
-                    <a href="#contacto" class="btn">Contáctanos</a>
+                    
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h4>Soluciones Rápidas</h4>
+                                <p>Implementamos soluciones eficientes en tiempo récord.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div>
+                                <h4>Seguridad Garantizada</h4>
+                                <p>Protegemos tus datos con los más altos estándares de seguridad.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h4>Resultados Medibles</h4>
+                                <p>Nuestras soluciones generan ROI tangible para tu negocio.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#contacto" class="btn" style="margin-top: 2rem;">
+                        <i class="fas fa-phone-alt"></i> Contáctanos
+                    </a>
                 </div>
                 <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Equipo de TecnoBum">
@@ -559,12 +877,12 @@
     </section>
 
     <!-- Contacto -->
-    <section id="contacto">
+    <section class="section-dark" id="contacto">
         <div class="container">
             <h2>Contáctanos</h2>
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>¿Listo para transformar tu empresa?</h3>
+                    <h3>¿Listo para Transformar tu Empresa?</h3>
                     <p>Ponte en contacto con nosotros para una consulta gratuita y descubre cómo podemos ayudarte a alcanzar tus objetivos tecnológicos.</p>
                     
                     <div class="contact-item">
@@ -596,17 +914,27 @@
                             <p>info@tecnobum.com</p>
                         </div>
                     </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4>Horario de Atención</h4>
+                            <p>Lun-Vie: 9:00 - 18:00</p>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Nombre</label>
+                            <label for="name">Nombre Completo</label>
                             <input type="text" id="name" class="form-control" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label for="email">Correo Electrónico</label>
                             <input type="email" id="email" class="form-control" required>
                         </div>
                         
@@ -616,7 +944,7 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="service">Servicio de interés</label>
+                            <label for="service">Servicio de Interés</label>
                             <select id="service" class="form-control">
                                 <option value="">Selecciona un servicio</option>
                                 <option value="desarrollo">Desarrollo de Software</option>
@@ -633,7 +961,9 @@
                             <textarea id="message" class="form-control" required></textarea>
                         </div>
                         
-                        <button type="submit" class="btn">Enviar Mensaje</button>
+                        <button type="submit" class="btn">
+                            <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                        </button>
                     </form>
                 </div>
             </div>
@@ -658,37 +988,37 @@
                 <div class="footer-column">
                     <h3>Enlaces Rápidos</h3>
                     <ul class="footer-links">
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#nosotros">Sobre Nosotros</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#inicio"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+                        <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Servicios</a></li>
+                        <li><a href="#nosotros"><i class="fas fa-chevron-right"></i> Sobre Nosotros</a></li>
+                        <li><a href="#contacto"><i class="fas fa-chevron-right"></i> Contacto</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Servicios</h3>
                     <ul class="footer-links">
-                        <li><a href="#servicios">Desarrollo de Software</a></li>
-                        <li><a href="#servicios">Ciberseguridad</a></li>
-                        <li><a href="#servicios">Migración a la Nube</a></li>
-                        <li><a href="#servicios">Gestión de Datos</a></li>
-                        <li><a href="#servicios">Soporte Técnico</a></li>
+                        <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Desarrollo de Software</a></li>
+                        <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Ciberseguridad</a></li>
+                        <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Migración a la Nube</a></li>
+                        <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Gestión de Datos</a></li>
+                        <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Soporte Técnico</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Contacto</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> Calle Tecnología 123, Ciudad Digital</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> info@tecnobum.com</li>
-                        <li><i class="fas fa-clock"></i> Lun-Vie: 9:00 - 18:00</li>
+                        <li><a href="#contacto"><i class="fas fa-map-marker-alt"></i> Calle Tecnología 123, Ciudad Digital</a></li>
+                        <li><a href="tel:+15551234567"><i class="fas fa-phone"></i> +1 (555) 123-4567</a></li>
+                        <li><a href="mailto:info@tecnobum.com"><i class="fas fa-envelope"></i> info@tecnobum.com</a></li>
+                        <li><a href="#contacto"><i class="fas fa-clock"></i> Lun-Vie: 9:00 - 18:00</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 TecnoBum. Todos los derechos reservados.</p>
+                <p>&copy; 2026 TecnoBum. Todos los derechos reservados. | Diseñado con <i class="fas fa-heart" style="color: #ff4757;"></i> para la innovación tecnológica</p>
             </div>
         </div>
     </footer>
@@ -697,16 +1027,30 @@
         // Menú responsive
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
+        const header = document.getElementById('header');
         
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars');
+            menuToggle.querySelector('i').classList.toggle('fa-times');
         });
         
         // Cerrar menú al hacer clic en un enlace
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
             });
+        });
+        
+        // Header con efecto al hacer scroll
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
         });
         
         // Formulario de contacto
@@ -715,38 +1059,43 @@
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Aquí normalmente enviarías los datos a un servidor
-            // Por ahora solo mostramos una alerta
-            alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-            contactForm.reset();
+            // Obtener valores del formulario
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            // Simular envío
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+            
+            // Simular tiempo de envío
+            setTimeout(() => {
+                alert(`¡Gracias ${name}! Hemos recibido tu mensaje. Nos pondremos en contacto contigo pronto en ${email}.`);
+                contactForm.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
         });
         
-        // Smooth scrolling para enlaces internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
+        // Animación de aparición de elementos al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('animate');
                 }
             });
-        });
+        }, observerOptions);
         
-        // Efecto de scroll para header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if(window.scrollY > 100) {
-                header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.boxShadow = 'var(--shadow)';
-            }
+        // Observar elementos para animación
+        document.querySelectorAll('.service-card, .about-content, .contact-form').forEach(el => {
+            observer.observe(el);
         });
     </script>
 </body>
