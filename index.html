@@ -4,27 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TecnoBum | Servicios Informáticos Profesionales</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Carga optimizada de recursos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Variables CSS optimizadas */
         :root {
             --primary: #0066ff;
             --primary-dark: #0052d4;
             --primary-light: #4d94ff;
-            --secondary: #00d4ff;
-            --dark: #0a0a0a;
-            --dark-gray: #1a1a1a;
-            --medium-gray: #2d2d2d;
-            --light-gray: #3d3d3d;
-            --light: #ffffff;
-            --shadow: 0 10px 30px rgba(0, 102, 255, 0.15);
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --secondary: #00b8d4;
+            --accent: #ff4757;
+            --dark: #121212;
+            --dark-gray: #2d3748;
+            --light-gray: #f7fafc;
+            --medium-gray: #e2e8f0;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 30px rgba(0, 102, 255, 0.12);
+            --transition-fast: all 0.2s ease;
+            --transition-base: all 0.3s ease;
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             --border-radius: 12px;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --border-radius-lg: 20px;
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-light: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary) 100%);
         }
         
+        /* Reset y estilos base optimizados */
         * {
             margin: 0;
             padding: 0;
@@ -33,149 +43,133 @@
         
         html {
             scroll-behavior: smooth;
+            font-size: 16px;
         }
         
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            color: var(--light);
-            background-color: var(--dark);
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--white);
             overflow-x: hidden;
+            font-weight: 400;
         }
         
-        h1, h2, h3, h4 {
+        /* Tipografía optimizada */
+        h1, h2, h3, h4, h5 {
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom: 1.5rem;
+            color: var(--dark);
         }
         
         h1 {
-            font-size: 3.5rem;
-            background: linear-gradient(to right, var(--light), var(--primary-light));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            margin-bottom: 1.5rem;
         }
         
         h2 {
-            font-size: 2.8rem;
+            font-size: clamp(2rem, 4vw, 2.8rem);
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
         }
         
         h2::after {
             content: '';
             position: absolute;
-            width: 100px;
-            height: 5px;
-            background: var(--gradient);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
             bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            border-radius: 5px;
+            border-radius: 2px;
         }
         
         h3 {
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
             margin-bottom: 1.2rem;
         }
         
         p {
-            margin-bottom: 1.5rem;
-            color: #cccccc;
+            margin-bottom: 1.2rem;
+            color: var(--dark-gray);
             font-size: 1.05rem;
+            line-height: 1.7;
         }
         
+        /* Layout optimizado */
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
         }
         
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-light {
+            background-color: var(--light-gray);
+        }
+        
+        /* Componentes reutilizables */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 1rem 2.2rem;
-            background: var(--gradient);
-            color: var(--light);
-            border: none;
-            border-radius: var(--border-radius);
+            gap: 0.75rem;
+            padding: 0.875rem 2rem;
             font-weight: 600;
             font-size: 1rem;
             text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition-base);
+            border: none;
             cursor: pointer;
-            transition: var(--transition);
             position: relative;
             overflow: hidden;
             z-index: 1;
         }
         
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            z-index: -1;
-            opacity: 0;
-            transition: var(--transition);
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
         }
         
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 102, 255, 0.3);
-        }
-        
-        .btn:hover::before {
-            opacity: 1;
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
         }
         
         .btn-secondary {
             background: transparent;
-            border: 2px solid var(--primary);
             color: var(--primary);
-        }
-        
-        .btn-secondary::before {
-            background: var(--primary);
+            border: 2px solid var(--primary);
         }
         
         .btn-secondary:hover {
-            color: var(--light);
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
         }
         
-        section {
-            padding: 6rem 0;
-        }
-        
-        .section-dark {
-            background-color: var(--dark-gray);
-        }
-        
-        /* Header y Navegación */
+        /* Header optimizado */
         header {
-            background-color: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: var(--transition);
+            transition: var(--transition-base);
         }
         
-        .header-scrolled {
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        header.scrolled {
+            box-shadow: var(--shadow-md);
             padding: 0;
         }
         
@@ -187,13 +181,13 @@
         }
         
         .logo {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            color: var(--light);
+            color: var(--dark);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.75rem;
         }
         
         .logo span {
@@ -201,26 +195,23 @@
         }
         
         .logo-icon {
-            color: var(--secondary);
+            color: var(--primary);
             font-size: 1.8rem;
         }
         
         .nav-links {
             display: flex;
             list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 2.5rem;
+            gap: 2rem;
         }
         
         .nav-links a {
             text-decoration: none;
-            color: #cccccc;
+            color: var(--dark-gray);
             font-weight: 500;
-            transition: var(--transition);
+            transition: var(--transition-fast);
             position: relative;
-            padding: 5px 0;
+            padding: 0.5rem 0;
         }
         
         .nav-links a::after {
@@ -230,12 +221,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--gradient);
-            transition: var(--transition);
+            background: var(--gradient-primary);
+            transition: var(--transition-base);
         }
         
         .nav-links a:hover {
-            color: var(--light);
+            color: var(--primary);
         }
         
         .nav-links a:hover::after {
@@ -246,17 +237,15 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--light);
+            color: var(--dark);
+            background: none;
+            border: none;
         }
         
-        /* Hero Section */
+        /* Hero section optimizada */
         .hero {
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                var(--dark);
-            text-align: center;
-            padding: 12rem 0 8rem;
+            background: var(--white);
+            padding: 10rem 0 6rem;
             position: relative;
             overflow: hidden;
         }
@@ -264,14 +253,11 @@
         .hero::before {
             content: '';
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--gradient);
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.15;
-            top: -100px;
-            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
             z-index: 0;
         }
         
@@ -280,18 +266,21 @@
             z-index: 1;
             max-width: 800px;
             margin: 0 auto;
+            text-align: center;
         }
         
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1.8rem;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 3rem;
-            color: #aaaaaa;
+            color: var(--dark-gray);
         }
         
         .hero-buttons {
@@ -301,24 +290,24 @@
             flex-wrap: wrap;
         }
         
-        /* Servicios */
+        /* Servicios optimizados */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
         
         .service-card {
-            background-color: var(--dark-gray);
+            background: var(--white);
             border-radius: var(--border-radius);
-            padding: 2.5rem;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-base);
+            border: 1px solid var(--medium-gray);
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
         
         .service-card::before {
@@ -328,74 +317,55 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: var(--gradient);
+            background: var(--gradient-primary);
         }
         
         .service-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(0, 102, 255, 0.3);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
         }
         
         .service-icon {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 2rem;
-            background: rgba(0, 102, 255, 0.1);
-            width: 90px;
-            height: 90px;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(0, 184, 212, 0.1) 100%);
+            width: 70px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            margin-left: auto;
-            margin-right: auto;
-            transition: var(--transition);
+            transition: var(--transition-base);
         }
         
         .service-card:hover .service-icon {
-            background: var(--gradient);
-            color: var(--light);
+            background: var(--gradient-primary);
+            color: var(--white);
             transform: scale(1.1);
         }
         
-        /* Sobre Nosotros */
+        /* Sobre nosotros optimizado */
         .about-content {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
             align-items: center;
-            gap: 5rem;
-            margin-top: 4rem;
-        }
-        
-        .about-text {
-            flex: 1;
+            margin-top: 3rem;
         }
         
         .about-image {
-            flex: 1;
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-lg);
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
             position: relative;
-        }
-        
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            opacity: 0.2;
-            z-index: 1;
         }
         
         .about-image img {
             width: 100%;
             height: auto;
             display: block;
-            transition: var(--transition);
+            transition: var(--transition-slow);
         }
         
         .about-image:hover img {
@@ -404,21 +374,61 @@
         
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
         
         .feature {
             display: flex;
             align-items: flex-start;
-            gap: 1.2rem;
+            gap: 1rem;
         }
         
         .feature-icon {
+            font-size: 1.2rem;
+            color: var(--primary);
+            background: rgba(0, 102, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            flex-shrink: 0;
+            transition: var(--transition-base);
+        }
+        
+        .feature:hover .feature-icon {
+            background: var(--gradient-primary);
+            color: var(--white);
+            transform: rotate(5deg);
+        }
+        
+        /* Contacto optimizado */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+        }
+        
+        .contact-icon {
             font-size: 1.5rem;
-            color: var(--secondary);
-            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary);
+            background: rgba(0, 102, 255, 0.1);
             width: 50px;
             height: 50px;
             display: flex;
@@ -426,122 +436,75 @@
             justify-content: center;
             border-radius: 10px;
             flex-shrink: 0;
-        }
-        
-        /* Contacto */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 5rem;
-            margin-top: 4rem;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-        }
-        
-        .contact-icon {
-            font-size: 1.8rem;
-            color: var(--primary);
-            background: rgba(0, 102, 255, 0.1);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            flex-shrink: 0;
-            transition: var(--transition);
+            transition: var(--transition-base);
         }
         
         .contact-item:hover .contact-icon {
-            background: var(--gradient);
-            color: var(--light);
+            background: var(--gradient-primary);
+            color: var(--white);
             transform: translateY(-5px);
         }
         
         .contact-form {
-            background-color: var(--dark-gray);
-            padding: 3rem;
+            background: var(--white);
+            padding: 2.5rem;
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--medium-gray);
         }
         
         .form-group {
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.5rem;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.5rem;
             font-weight: 500;
-            color: #cccccc;
+            color: var(--dark);
         }
         
         .form-control {
             width: 100%;
-            padding: 1rem;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            padding: 0.875rem 1rem;
+            background-color: var(--white);
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
             font-family: 'Inter', sans-serif;
-            color: var(--light);
+            color: var(--dark);
             font-size: 1rem;
-            transition: var(--transition);
+            transition: var(--transition-fast);
         }
         
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
         }
         
         textarea.form-control {
-            min-height: 180px;
+            min-height: 150px;
             resize: vertical;
         }
         
-        /* Footer */
+        /* Footer optimizado */
         footer {
-            background-color: var(--dark);
-            color: var(--light);
-            padding: 5rem 0 2.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--dark);
+            color: var(--white);
+            padding: 4rem 0 2rem;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3.5rem;
-            margin-bottom: 4rem;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
         
         .footer-column h3 {
-            color: var(--light);
-            margin-bottom: 2rem;
-            font-size: 1.5rem;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--gradient);
-            border-radius: 3px;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
         }
         
         .footer-links {
@@ -549,92 +512,93 @@
         }
         
         .footer-links li {
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
         
         .footer-links a {
-            color: #aaaaaa;
+            color: #b0b0b0;
             text-decoration: none;
-            transition: var(--transition);
+            transition: var(--transition-fast);
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-        
-        .footer-links a i {
-            color: var(--primary);
-            font-size: 0.9rem;
-            transition: var(--transition);
+            gap: 0.5rem;
         }
         
         .footer-links a:hover {
-            color: var(--light);
+            color: var(--white);
             transform: translateX(5px);
-        }
-        
-        .footer-links a:hover i {
-            color: var(--secondary);
         }
         
         .social-links {
             display: flex;
             gap: 1rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
         
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
-            background-color: var(--dark-gray);
-            border-radius: 10px;
-            color: var(--light);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
             text-decoration: none;
-            transition: var(--transition);
-            font-size: 1.2rem;
+            transition: var(--transition-base);
         }
         
         .social-links a:hover {
-            background: var(--gradient);
-            transform: translateY(-5px);
+            background: var(--gradient-primary);
+            transform: translateY(-3px);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 2.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #888888;
-            font-size: 0.95rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
         }
         
-        /* Responsive */
-        @media (max-width: 1100px) {
-            h1 {
-                font-size: 3rem;
+        /* Animaciones optimizadas */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            
-            h2 {
-                font-size: 2.5rem;
-            }
-            
-            .hero h1 {
-                font-size: 3.2rem;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
         
-        @media (max-width: 992px) {
-            .about-content {
-                flex-direction: column;
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        /* Efectos de carga progresiva */
+        .lazy-load {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .lazy-load.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive optimizado */
+        @media (max-width: 1024px) {
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
             }
             
-            .about-text, .about-image {
-                width: 100%;
-            }
-            
-            .services-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            .about-image {
+                order: -1;
             }
         }
         
@@ -648,16 +612,15 @@
                 top: 70px;
                 left: 0;
                 width: 100%;
-                background-color: var(--dark-gray);
+                background-color: var(--white);
                 flex-direction: column;
                 align-items: center;
-                padding: 2rem 0;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+                padding: 2rem;
+                box-shadow: var(--shadow-md);
                 transform: translateY(-100%);
                 opacity: 0;
                 visibility: hidden;
-                transition: var(--transition);
-                border-top: 1px solid rgba(255, 255, 255, 0.05);
+                transition: var(--transition-base);
                 z-index: 999;
             }
             
@@ -667,16 +630,8 @@
                 visibility: visible;
             }
             
-            .nav-links li {
-                margin: 1rem 0;
-            }
-            
             .hero {
-                padding: 10rem 0 6rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.8rem;
+                padding: 8rem 0 4rem;
             }
             
             .hero-buttons {
@@ -690,43 +645,55 @@
             }
             
             section {
-                padding: 4rem 0;
+                padding: 3rem 0;
             }
         }
         
-        @media (max-width: 576px) {
+        @media (max-width: 480px) {
             .container {
-                padding: 0 1.5rem;
-            }
-            
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
+                padding: 0 1rem;
             }
             
             .services-grid {
                 grid-template-columns: 1fr;
             }
             
-            .contact-container {
-                grid-template-columns: 1fr;
+            .contact-form {
+                padding: 1.5rem;
             }
             
-            .contact-form {
-                padding: 2rem;
+            .features {
+                grid-template-columns: 1fr;
             }
+        }
+        
+        /* Optimizaciones de rendimiento */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Prevención de layout shifts */
+        .aspect-ratio {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .aspect-ratio img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
 <body>
-    <!-- Header y Navegación -->
+    <!-- Header -->
     <header id="header">
         <div class="container">
             <nav class="navbar">
@@ -735,9 +702,9 @@
                     Tecno<span>Bum</span>
                 </a>
                 
-                <div class="menu-toggle" id="menuToggle">
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú">
                     <i class="fas fa-bars"></i>
-                </div>
+                </button>
                 
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#inicio">Inicio</a></li>
@@ -752,15 +719,15 @@
     <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="container">
-            <div class="hero-content">
-                <h1>Impulsa tu Negocio con Tecnología de Vanguardia</h1>
-                <p>En TecnoBum ofrecemos soluciones informáticas integrales diseñadas para optimizar tus operaciones, proteger tus datos y acelerar tu crecimiento en el mundo digital.</p>
+            <div class="hero-content fade-in">
+                <h1>Transformamos tu Negocio con Soluciones Tecnológicas</h1>
+                <p>En TecnoBum desarrollamos soluciones informáticas innovadoras que optimizan procesos, protegen datos y aceleran el crecimiento de tu empresa en el entorno digital.</p>
                 <div class="hero-buttons">
-                    <a href="#contacto" class="btn">
-                        <i class="fas fa-paper-plane"></i> Contáctanos
+                    <a href="#contacto" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Comenzar Proyecto
                     </a>
                     <a href="#servicios" class="btn btn-secondary">
-                        <i class="fas fa-laptop-code"></i> Nuestros Servicios
+                        <i class="fas fa-laptop-code"></i> Ver Servicios
                     </a>
                 </div>
             </div>
@@ -768,56 +735,56 @@
     </section>
 
     <!-- Servicios -->
-    <section class="section-dark" id="servicios">
+    <section class="section-light" id="servicios">
         <div class="container">
-            <h2>Nuestros Servicios</h2>
+            <h2>Servicios Especializados</h2>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card lazy-load">
                     <div class="service-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <h3>Desarrollo de Software</h3>
-                    <p>Creación de aplicaciones personalizadas, sistemas de gestión empresarial y soluciones web a medida para tus necesidades específicas.</p>
+                    <p>Soluciones personalizadas y aplicaciones web modernas que se adaptan a las necesidades específicas de tu negocio.</p>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card lazy-load">
                     <div class="service-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3>Ciberseguridad</h3>
-                    <p>Protección de sistemas, redes y datos contra ciberamenazas. Auditorías de seguridad, monitoreo 24/7 y planes de recuperación.</p>
+                    <p>Protección integral de sistemas y datos con auditorías, monitoreo 24/7 y planes de recuperación ante incidentes.</p>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card lazy-load">
                     <div class="service-icon">
-                        <i class="fas fa-cloud-upload-alt"></i>
+                        <i class="fas fa-cloud"></i>
                     </div>
-                    <h3>Migración a la Nube</h3>
-                    <p>Implementación de soluciones cloud, migración segura de datos y optimización de infraestructura en la nube para mayor flexibilidad.</p>
+                    <h3>Soluciones Cloud</h3>
+                    <p>Migración, implementación y optimización de infraestructuras en la nube para mayor escalabilidad y eficiencia.</p>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card lazy-load">
                     <div class="service-icon">
                         <i class="fas fa-database"></i>
                     </div>
                     <h3>Gestión de Datos</h3>
-                    <p>Análisis, almacenamiento y procesamiento de datos. Implementación de soluciones de Business Intelligence y Big Data.</p>
+                    <p>Análisis, procesamiento y visualización de datos para la toma de decisiones estratégicas basadas en información.</p>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card lazy-load">
                     <div class="service-icon">
                         <i class="fas fa-headset"></i>
                     </div>
                     <h3>Soporte Técnico</h3>
-                    <p>Soporte especializado 24/7, resolución de incidencias, mantenimiento preventivo y correctivo de sistemas y equipos.</p>
+                    <p>Asistencia especializada, mantenimiento preventivo y resolución rápida de incidencias técnicas.</p>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card lazy-load">
                     <div class="service-icon">
                         <i class="fas fa-network-wired"></i>
                     </div>
                     <h3>Infraestructura IT</h3>
-                    <p>Diseño, implementación y mantenimiento de redes, servidores, comunicaciones y toda la infraestructura tecnológica de tu empresa.</p>
+                    <p>Diseño e implementación de redes, servidores y comunicaciones para operaciones tecnológicas eficientes.</p>
                 </div>
             </div>
         </div>
@@ -826,12 +793,12 @@
     <!-- Sobre Nosotros -->
     <section id="nosotros">
         <div class="container">
-            <h2>Sobre Nosotros</h2>
+            <h2>Sobre TecnoBum</h2>
             <div class="about-content">
-                <div class="about-text">
-                    <h3>Expertos en Soluciones Tecnológicas Innovadoras</h3>
-                    <p>En TecnoBum combinamos experiencia, innovación y compromiso para ofrecer servicios informáticos de alta calidad. Nuestro equipo de profesionales certificados está dedicado a ayudar a empresas de todos los tamaños a alcanzar sus objetivos tecnológicos.</p>
-                    <p>Nos especializamos en transformación digital, seguridad informática y desarrollo de soluciones a medida que se adaptan a las necesidades específicas de cada cliente.</p>
+                <div class="about-text lazy-load">
+                    <h3>Innovación Tecnológica para tu Éxito</h3>
+                    <p>Somos un equipo de expertos en tecnología comprometidos con ofrecer soluciones informáticas que generan valor real para tu empresa.</p>
+                    <p>Con más de 10 años de experiencia, hemos ayudado a empresas de diversos sectores a transformar sus operaciones mediante la implementación de tecnologías innovadoras.</p>
                     
                     <div class="features">
                         <div class="feature">
@@ -839,8 +806,8 @@
                                 <i class="fas fa-bolt"></i>
                             </div>
                             <div>
-                                <h4>Soluciones Rápidas</h4>
-                                <p>Implementamos soluciones eficientes en tiempo récord.</p>
+                                <h4>Implementación Rápida</h4>
+                                <p>Soluciones eficientes en tiempos reducidos</p>
                             </div>
                         </div>
                         
@@ -849,8 +816,8 @@
                                 <i class="fas fa-lock"></i>
                             </div>
                             <div>
-                                <h4>Seguridad Garantizada</h4>
-                                <p>Protegemos tus datos con los más altos estándares de seguridad.</p>
+                                <h4>Seguridad Integral</h4>
+                                <p>Protección de datos con estándares internacionales</p>
                             </div>
                         </div>
                         
@@ -860,38 +827,35 @@
                             </div>
                             <div>
                                 <h4>Resultados Medibles</h4>
-                                <p>Nuestras soluciones generan ROI tangible para tu negocio.</p>
+                                <p>ROI tangible en cada proyecto</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <a href="#contacto" class="btn" style="margin-top: 2rem;">
-                        <i class="fas fa-phone-alt"></i> Contáctanos
-                    </a>
                 </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Equipo de TecnoBum">
+                
+                <div class="about-image lazy-load">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Equipo de TecnoBum trabajando" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contacto -->
-    <section class="section-dark" id="contacto">
+    <section class="section-light" id="contacto">
         <div class="container">
             <h2>Contáctanos</h2>
             <div class="contact-container">
-                <div class="contact-info">
+                <div class="contact-info lazy-load">
                     <h3>¿Listo para Transformar tu Empresa?</h3>
-                    <p>Ponte en contacto con nosotros para una consulta gratuita y descubre cómo podemos ayudarte a alcanzar tus objetivos tecnológicos.</p>
+                    <p>Solicita una consulta gratuita y descubre cómo nuestras soluciones tecnológicas pueden impulsar tu negocio.</p>
                     
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div>
-                            <h4>Dirección</h4>
-                            <p>Calle Tecnología 123, Ciudad Digital</p>
+                            <h4>Ubicación</h4>
+                            <p>Av. Tecnología 1234, Distrito Digital</p>
                         </div>
                     </div>
                     
@@ -920,13 +884,13 @@
                             <i class="fas fa-clock"></i>
                         </div>
                         <div>
-                            <h4>Horario de Atención</h4>
+                            <h4>Horario</h4>
                             <p>Lun-Vie: 9:00 - 18:00</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="contact-form">
+                <div class="contact-form lazy-load">
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Nombre Completo</label>
@@ -949,7 +913,7 @@
                                 <option value="">Selecciona un servicio</option>
                                 <option value="desarrollo">Desarrollo de Software</option>
                                 <option value="seguridad">Ciberseguridad</option>
-                                <option value="cloud">Migración a la Nube</option>
+                                <option value="cloud">Soluciones Cloud</option>
                                 <option value="datos">Gestión de Datos</option>
                                 <option value="soporte">Soporte Técnico</option>
                                 <option value="infraestructura">Infraestructura IT</option>
@@ -961,7 +925,7 @@
                             <textarea id="message" class="form-control" required></textarea>
                         </div>
                         
-                        <button type="submit" class="btn">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
                             <i class="fas fa-paper-plane"></i> Enviar Mensaje
                         </button>
                     </form>
@@ -976,12 +940,12 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>TecnoBum</h3>
-                    <p>Líderes en servicios informáticos profesionales, brindando soluciones tecnológicas innovadoras para empresas de todos los tamaños.</p>
+                    <p>Líderes en soluciones tecnológicas innovadoras para empresas que buscan transformación digital y crecimiento sostenible.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
@@ -1000,7 +964,7 @@
                     <ul class="footer-links">
                         <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Desarrollo de Software</a></li>
                         <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Ciberseguridad</a></li>
-                        <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Migración a la Nube</a></li>
+                        <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Soluciones Cloud</a></li>
                         <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Gestión de Datos</a></li>
                         <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Soporte Técnico</a></li>
                     </ul>
@@ -1009,94 +973,148 @@
                 <div class="footer-column">
                     <h3>Contacto</h3>
                     <ul class="footer-links">
-                        <li><a href="#contacto"><i class="fas fa-map-marker-alt"></i> Calle Tecnología 123, Ciudad Digital</a></li>
+                        <li><a href="#contacto"><i class="fas fa-map-marker-alt"></i> Av. Tecnología 1234</a></li>
                         <li><a href="tel:+15551234567"><i class="fas fa-phone"></i> +1 (555) 123-4567</a></li>
                         <li><a href="mailto:info@tecnobum.com"><i class="fas fa-envelope"></i> info@tecnobum.com</a></li>
-                        <li><a href="#contacto"><i class="fas fa-clock"></i> Lun-Vie: 9:00 - 18:00</a></li>
+                        <li><a href="#contacto"><i class="fas fa-clock"></i> Lun-Vie: 9:00-18:00</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2026 TecnoBum. Todos los derechos reservados. | Diseñado con <i class="fas fa-heart" style="color: #ff4757;"></i> para la innovación tecnológica</p>
+                <p>&copy; 2026 TecnoBum. Todos los derechos reservados. | <span id="currentYear">2026</span></p>
             </div>
         </div>
     </footer>
 
+    <!-- Script optimizado -->
     <script>
-        // Menú responsive
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        const header = document.getElementById('header');
-        
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.querySelector('i').classList.toggle('fa-bars');
-            menuToggle.querySelector('i').classList.toggle('fa-times');
-        });
-        
-        // Cerrar menú al hacer clic en un enlace
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.querySelector('i').classList.remove('fa-times');
-                menuToggle.querySelector('i').classList.add('fa-bars');
+        // Código optimizado para carga rápida
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const header = document.getElementById('header');
+            const contactForm = document.getElementById('contactForm');
+            const currentYear = document.getElementById('currentYear');
+            
+            // Actualizar año actual
+            currentYear.textContent = new Date().getFullYear();
+            
+            // Menú responsive
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
             });
-        });
-        
-        // Header con efecto al hacer scroll
-        window.addEventListener('scroll', () => {
-            if(window.scrollY > 100) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-        });
-        
-        // Formulario de contacto
-        const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
             
-            // Obtener valores del formulario
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
+            // Cerrar menú al hacer clic en enlace
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                });
+            });
             
-            // Simular envío
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
+            // Header scroll effect
+            let lastScroll = 0;
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll > 100) {
+                    header.classList.add('scrolled');
+                    
+                    if (currentScroll > lastScroll && currentScroll > 200) {
+                        header.style.transform = 'translateY(-100%)';
+                    } else {
+                        header.style.transform = 'translateY(0)';
+                    }
+                } else {
+                    header.classList.remove('scrolled');
+                    header.style.transform = 'translateY(0)';
+                }
+                
+                lastScroll = currentScroll;
+            });
             
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-            submitBtn.disabled = true;
-            
-            // Simular tiempo de envío
-            setTimeout(() => {
-                alert(`¡Gracias ${name}! Hemos recibido tu mensaje. Nos pondremos en contacto contigo pronto en ${email}.`);
+            // Formulario de contacto
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                // Simular envío
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                submitBtn.disabled = true;
+                
+                // Simulación de API call
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Mensaje de éxito
+                alert('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.');
                 contactForm.reset();
+                
+                // Restaurar botón
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            }, 1500);
-        });
-        
-        // Animación de aparición de elementos al hacer scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
             });
-        }, observerOptions);
-        
-        // Observar elementos para animación
-        document.querySelectorAll('.service-card, .about-content, .contact-form').forEach(el => {
-            observer.observe(el);
+            
+            // Lazy loading para elementos
+            const lazyLoadElements = document.querySelectorAll('.lazy-load');
+            const observerOptions = {
+                root: null,
+                rootMargin: '50px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('loaded');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            lazyLoadElements.forEach(el => observer.observe(el));
+            
+            // Smooth scroll para enlaces internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href === '#') return;
+                    
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        e.preventDefault();
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Preload critical images
+            const criticalImages = [
+                'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'
+            ];
+            
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
         });
+        
+        // Prevenir FOUC (Flash of Unstyled Content)
+        document.documentElement.style.visibility = 'visible';
     </script>
 </body>
 </html>
